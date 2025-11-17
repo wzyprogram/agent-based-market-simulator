@@ -1,12 +1,11 @@
-from core.structures import Parameters
 from core.simulation import inject_simulation
-import matplotlib.pyplot as plt
+from visual import plot_l1, plot_heatmap, plot_depth_curve
+from core.structures import Parameters
 
 params = Parameters()
-prices = inject_simulation(params, steps=300)
+data = inject_simulation(params, steps=300)
 
-plt.plot(prices)
-plt.title("Simulated Midprice Evolution")
-plt.xlabel("Time Step")
-plt.ylabel("Price")
-plt.show()
+plot_l1(data["midprices"], data["best_bids"], data["best_asks"])
+plot_heatmap(data["lob_history"])
+# plot_depth_curve(data["final_lob"])
+
